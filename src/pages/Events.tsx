@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-const Event:FC = () => {
+const Events:FC = () => {
   return (
     <div>
         Event page
@@ -9,4 +9,4 @@ const Event:FC = () => {
 }
 
 
-export default Event
+export default Events
