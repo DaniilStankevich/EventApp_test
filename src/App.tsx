@@ -1,35 +1,30 @@
-import { FC, useEffect } from 'react'
-import { Layout } from 'antd'
-import { useTypeSelector } from './hooks/useTypeSelector'
-import AppRouter from './components/AppRouter'
-import Navbar from './components/Navbar'
+import { FC, useEffect } from "react"
+import { Layout } from "antd"
+import { useTypeSelector } from "./hooks/useTypeSelector"
+import AppRouter from "./components/AppRouter"
+import Navbar from "./components/Navbar"
 import "./App.css"
-import { useActions } from './hooks/useActions'
-import { IUser } from './models/IUser'
+import { useActions } from "./hooks/useActions"
+import { IUser } from "./models/IUser"
 
-
-const App:FC = () => {
-
-  const {setUser, setIsAuth } = useActions()
+const App: FC = () => {
+  const { setUser, setIsAuth } = useActions()
 
   useEffect(() => {
-    if(localStorage.getItem('auth')) {
-      setUser({ username: localStorage.getItem('username' || '')} as IUser)
+    if (localStorage.getItem("auth")) {
+      setUser({ username: localStorage.getItem("username" || "") } as IUser)
       setIsAuth(true)
     }
   }, [])
 
-
   return (
-
-   <Layout> 
+    <Layout>
       <Navbar />
-        <Layout.Content> 
-            <AppRouter />
-        </Layout.Content>  
-    </Layout>  
+      <Layout.Content>
+        <AppRouter />
+      </Layout.Content>
+    </Layout>
   )
 }
 
 export default App
-

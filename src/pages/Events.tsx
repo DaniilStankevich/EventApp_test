@@ -1,53 +1,46 @@
-import { FC, useState, useEffect } from 'react'
-import EventCalendar from '../components/EventCalendar'
-import { Button, Modal, Row } from 'antd'
-import EventForm from '../components/EventForm'
-import { useActions } from '../hooks/useActions'
-import { useTypeSelector } from '../hooks/useTypeSelector'
+import { FC, useState, useEffect } from "react"
+import EventCalendar from "../components/EventCalendar"
+import { Button, Layout, Modal, Row } from "antd"
+import EventForm from "../components/EventForm"
+import { useActions } from "../hooks/useActions"
+import { useTypeSelector } from "../hooks/useTypeSelector"
+import { IEvent } from "../models/IEvent"
 
-const Events:FC = () => {
-
-  const [ modalVisivle, setModalVisible ] = useState(false)
-  const { fetchGuest} = useActions()
-
-  const { guests } = useTypeSelector(state => state.event)
-
-
+const Events: FC = () => {
+  const [modalVisivle, setModalVisible] = useState(false)
+  const { fetchGuest, createEvent } = useActions()
+  const { guests, events } = useTypeSelector((state) => state.event)
 
   useEffect(() => {
-      fetchGuest()
+    fetchGuest()
   }, [])
-  
 
-
+  const addNewEvent = (event: IEvent) => {
+    setModalVisible(false)
+    createEvent(event)
+  }
 
   return (
-    <div>
-      <EventCalendar events={[]}/>
+    <Layout>
+      <EventCalendar events={[]} />
 
       <Row justify="center">
-        <Button
-          onClick={() => setModalVisible(true)}
-        >        
-          Добавить событие
-          </Button>
+        <Button onClick={() => setModalVisible(true)}>Добавить событие</Button>
       </Row>
 
-      <Modal 
+      <Modal
         title="Добавить событие"
         open={modalVisivle}
         footer={null}
         onCancel={() => setModalVisible(false)}
       >
-
-
-      <EventForm guests={guests} />
-
+        <EventForm
+          guests={guests}
+          submit={addNewEvent}
+        />
       </Modal>
-
-    </div>
+    </Layout>
   )
 }
-
 
 export default Events

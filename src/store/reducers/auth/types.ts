@@ -1,46 +1,46 @@
-import { IUser } from "../../../models/IUser";
+import { IUser } from "../../../models/IUser"
 
 export interface AuthState {
-    isAuth: boolean
-    user: IUser
-    isLoading: boolean
-    error: string;
+  isAuth: boolean
+  user: IUser
+  isLoading: boolean
+  error: string
 }
 
-// Перечисления 
-export enum  AuthActionsEnum {
-    SET_AUTH = "SET_AUTH",
-    SET_ERROR = "SET_ERROR",
+// Перечисления
+export enum AuthActionsEnum {
+  SET_AUTH = "SET_AUTH",
+  SET_ERROR = "SET_ERROR",
 
-    SET_USER = "SET_USER",
-    SET_IS_LOADING = "SET_IS_LOADING"
+  SET_USER = "SET_USER",
+  SET_IS_LOADING = "SET_IS_LOADING",
 }
-
-
 
 // Поля для каждого экшена  //
 
 export interface SetAuthAction {
-    type: AuthActionsEnum.SET_AUTH;  
-    payload: boolean
+  type: AuthActionsEnum.SET_AUTH
+  payload: boolean
 }
 
 export interface SetErrorAction {
-    type: AuthActionsEnum.SET_ERROR;  
-    payload: string
+  type: AuthActionsEnum.SET_ERROR
+  payload: string
 }
 
 export interface SetUserAction {
-    type: AuthActionsEnum.SET_USER;  
-    payload: IUser
+  type: AuthActionsEnum.SET_USER
+  payload: IUser
 }
 
 export interface SetIsLoadingAction {
-    type: AuthActionsEnum.SET_IS_LOADING;  
-    payload: boolean
+  type: AuthActionsEnum.SET_IS_LOADING
+  payload: boolean
 }
 
-
-
 // Обобщающий тип для всех интерфейсов
-export type AuthAction = SetAuthAction | SetUserAction | SetErrorAction | SetIsLoadingAction
+export type AuthAction =
+  | SetAuthAction
+  | SetUserAction
+  | SetErrorAction
+  | SetIsLoadingAction

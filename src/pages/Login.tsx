@@ -1,21 +1,21 @@
-import { FC } from 'react'
-import { Card, Layout, Menu, Row } from 'antd'
-import LoginForm from '../components/LoginForm'
+import { FC } from "react"
+import { Card, Layout, Menu, Row } from "antd"
+import LoginForm from "../components/LoginForm"
 
-const Login:FC = () => {
+const Login: FC = () => {
   return (
-
-  <Layout>
-    <Row justify="center" align="middle" className="h100">
-
-      <Card >
-        <LoginForm />
-      </Card>
-
-    </Row>
-  </Layout>
+    <Layout>
+      <Row
+        justify="center"
+        align="middle"
+        className="h100"
+      >
+        <Card>
+          <LoginForm />
+        </Card>
+      </Row>
+    </Layout>
   )
 }
-
 
 export default Login
