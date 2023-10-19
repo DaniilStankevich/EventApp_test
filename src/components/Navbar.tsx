@@ -4,14 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { useTypeSelector } from '../hooks/useTypeSelector'
 import { useDispatch } from 'react-redux'
 import { AuthActionCreators } from '../store/reducers/auth/action-creators'
+import { useActions } from '../hooks/useActions'
 
 
 const Navbar: FC = () => {
 
   const naviagete = useNavigate()
-  const { isAuth } = useTypeSelector(state => state.auth)
+  const { isAuth, user } = useTypeSelector(state => state.auth)
   const dispatch: Dispatch<any> = useDispatch()
 
+  const { logout } = useActions()
 
   return (
     <Layout.Header>
@@ -20,7 +22,7 @@ const Navbar: FC = () => {
           {isAuth ?
 
           <> 
-            <div style={{color: 'white'}}>Daniil</div>
+            <div style={{color: 'white'}}>{user.username}</div>
             <Menu theme='dark' selectable={false} mode='horizontal'>
               <Menu.Item 
                 onClick={() => dispatch(AuthActionCreators.logout()) } 
@@ -34,7 +36,7 @@ const Navbar: FC = () => {
 
           <Menu theme='dark' selectable={false}>
               <Menu.Item 
-              onClick={() =>naviagete('/login') } 
+              onClick={logout} 
               key={1}>
                 Логин
               </Menu.Item>
