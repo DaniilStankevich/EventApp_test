@@ -2,6 +2,7 @@ import axios from "axios";
 import { IUser } from "../../../models/IUser";
 import { AuthActionsEnum, SetAuthAction, SetErrorAction, SetIsLoadingAction, SetUserAction } from "./types";
 import { AppDispatch } from "../../index";
+import UserService from "../../../api/UserService";
 
 
 export const AuthActionCreators = {
@@ -15,7 +16,9 @@ export const AuthActionCreators = {
         try {
             dispatch(AuthActionCreators.setIsLoading(true)) 
             setTimeout( async () => {
-                const response = await axios.get<IUser[]>('./users.json')  
+
+                const response = await UserService.getUseres()
+                
                 const mockuser = response.data.find(user => user.username === username && user.password === password )
                 if(mockuser) {
                     localStorage.setItem('auth', 'true' )
