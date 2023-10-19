@@ -9,6 +9,8 @@ export default function EventReducer(
   state = intitialState,
   action: EventAction
 ): EventState {
+
+  
   switch (action.type) {
     case EventActionEnum.SET_GUESTS:
       return { ...state, guests: action.payload }

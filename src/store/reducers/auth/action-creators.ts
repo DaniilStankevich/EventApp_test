@@ -1,4 +1,3 @@
-import axios from "axios"
 import { IUser } from "../../../models/IUser"
 import {
   AuthActionsEnum,
@@ -31,6 +30,8 @@ export const AuthActionCreators = {
     payload,
   }),
 
+
+  
   login:
     (username: string, password: string) => async (dispatch: AppDispatch) => {
       try {
@@ -48,11 +49,10 @@ export const AuthActionCreators = {
             dispatch(AuthActionCreators.setUser(mockuser))
           } else {
             dispatch(
-              AuthActionCreators.setError("Некорректный логин или пароль")
+              AuthActionCreators.setError("Неккоректный логин или пароль")
             )
           }
           dispatch(AuthActionCreators.setIsLoading(false))
-          //console.log(mockuser , '- вот он')
         }, 0)
       } catch (e) {
         dispatch(AuthActionCreators.setError("Произошла ошибка"))

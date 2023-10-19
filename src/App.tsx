@@ -1,11 +1,10 @@
 import { FC, useEffect } from "react"
 import { Layout } from "antd"
-import { useTypeSelector } from "./hooks/useTypeSelector"
+import { useActions } from "./hooks/useActions"
+import { IUser } from "./models/IUser"
 import AppRouter from "./components/AppRouter"
 import Navbar from "./components/Navbar"
 import "./App.css"
-import { useActions } from "./hooks/useActions"
-import { IUser } from "./models/IUser"
 
 const App: FC = () => {
   const { setUser, setIsAuth } = useActions()

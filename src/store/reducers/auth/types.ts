@@ -11,12 +11,11 @@ export interface AuthState {
 export enum AuthActionsEnum {
   SET_AUTH = "SET_AUTH",
   SET_ERROR = "SET_ERROR",
-
   SET_USER = "SET_USER",
   SET_IS_LOADING = "SET_IS_LOADING",
 }
 
-// Поля для каждого экшена  //
+// Поля для каждого экшена  
 
 export interface SetAuthAction {
   type: AuthActionsEnum.SET_AUTH

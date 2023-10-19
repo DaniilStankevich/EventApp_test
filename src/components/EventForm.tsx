@@ -1,9 +1,8 @@
 import { Button, DatePicker, Form, Input, Row, Select } from "antd"
-import React, { FC, useState } from "react"
+import { FC, useState } from "react"
 import { rules } from "../utils/rules"
 import { IUser } from "../models/IUser"
 import { IEvent } from "../models/IEvent"
-import { Moment } from "moment"
 import { Dayjs } from "dayjs"
 import { formatDate } from "../utils/date"
 import { useTypeSelector } from "../hooks/useTypeSelector"
@@ -33,7 +32,7 @@ const EventForm: FC<EventFormProps> = (props) => {
     console.log({ ...event, author: user.username })
   }
 
-  //console.log(event)
+
 
   return (
     <Form onFinish={submitForm}>
@@ -56,9 +55,8 @@ const EventForm: FC<EventFormProps> = (props) => {
         <DatePicker
           onChange={(date) => {
             if (date !== null) {
-              selectDate(date) // Если date не равен null, передаем его как есть
+              selectDate(date)
             } else {
-              // Обработка случая, когда date равен null (по вашей логике)
             }
           }}
         />
@@ -97,14 +95,3 @@ const EventForm: FC<EventFormProps> = (props) => {
 
 export default EventForm
 
-/*
-isDateAfter: (message: string) => () => ({
-    validator(_: any, value: Dayjs) {
-      if (dayjs(value) >= dayjs()) {
-        return Promise.resolve();
-      }
-      return Promise.reject(new Error(message));
-    },
-  }),
-
-*/

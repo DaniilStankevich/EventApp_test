@@ -11,6 +11,8 @@ export enum EventActionEnum {
   SET_EVENTS = "SET_EVENTS",
 }
 
+
+
 export interface SetGuestsAction {
   type: EventActionEnum.SET_GUESTS
   payload: IUser[]

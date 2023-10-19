@@ -1,19 +1,23 @@
 import { FC, useState, useEffect } from "react"
-import EventCalendar from "../components/EventCalendar"
 import { Button, Layout, Modal, Row } from "antd"
-import EventForm from "../components/EventForm"
 import { useActions } from "../hooks/useActions"
 import { useTypeSelector } from "../hooks/useTypeSelector"
 import { IEvent } from "../models/IEvent"
+import EventForm from "../components/EventForm"
+import EventCalendar from "../components/EventCalendar"
 
 const Events: FC = () => {
   const [modalVisivle, setModalVisible] = useState(false)
-  const { fetchGuest, createEvent } = useActions()
+  const { fetchGuest, createEvent, fetchEvents } = useActions()
   const { guests, events } = useTypeSelector((state) => state.event)
+  const { user } = useTypeSelector((state) => state.auth)
+
 
   useEffect(() => {
     fetchGuest()
+    fetchEvents(user.username)
   }, [])
+
 
   const addNewEvent = (event: IEvent) => {
     setModalVisible(false)
@@ -22,7 +26,7 @@ const Events: FC = () => {
 
   return (
     <Layout>
-      <EventCalendar events={[]} />
+      <EventCalendar events={events} />
 
       <Row justify="center">
         <Button onClick={() => setModalVisible(true)}>Добавить событие</Button>
