@@ -1,14 +1,16 @@
 import { Layout, Menu, Row } from 'antd'
-//import { Header} from 'antd/es/layout/layout'
-import React, { FC } from 'react'
+import { FC, Dispatch } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTypeSelector } from '../hooks/useTypeSelector'
+import { useDispatch } from 'react-redux'
+import { AuthActionCreators } from '../store/reducers/auth/action-creators'
 
 
 const Navbar: FC = () => {
 
   const naviagete = useNavigate()
   const { isAuth } = useTypeSelector(state => state.auth)
+  const dispatch: Dispatch<any> = useDispatch()
 
 
   return (
@@ -21,7 +23,7 @@ const Navbar: FC = () => {
             <div style={{color: 'white'}}>Daniil</div>
             <Menu theme='dark' selectable={false} mode='horizontal'>
               <Menu.Item 
-                onClick={() =>console.log('Выйти') } 
+                onClick={() => dispatch(AuthActionCreators.logout()) } 
                 key={1}>
                 Выйти
               </Menu.Item>
@@ -38,7 +40,7 @@ const Navbar: FC = () => {
               </Menu.Item>
           </Menu> 
           }
-
+ 
         </Row>
     </Layout.Header>
   )
